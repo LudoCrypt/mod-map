@@ -692,14 +692,15 @@
                 console.error(e);
             }
             let rdifficulty = pdifficulty;
-            if (["white", "yellow", "red", "night", "artificer", "rivulet", "spear", "gourmand", "saint", "inv"].indexOf(rdifficulty.toLowerCase()) == -1) rdifficulty = "modcats/" + rdifficulty;
-            let roompath = `https://alduris.github.io/modmap-data-${rdifficulty}/${region}`;
+            if (["white", "yellow", "red", "night", "artificer", "rivulet", "spear", "gourmand", "saint", "inv", "seer"].indexOf(rdifficulty.toLowerCase()) == -1) rdifficulty = "modcats/" + rdifficulty;
+            let roompath = `https://ludocrypt.github.io/${region.toUpperCase()}/${rdifficulty.charAt(0).toUpperCase() + rdifficulty.slice(1).toLowerCase()}`;
+            console.error(roompath);
             getJsonObject(`${roompath}/region.json`, function (json) {
                 var roomjson = json;
                 if ('copyingrooms' in json) {
-                    getJsonObject(`${roompath}/${region}/region.json`, function (copyjson) {
+                    getJsonObject(`${roompath}/region.json`, function (copyjson) {
                         roomjson = copyjson;
-                        roompath = `${roompath}/${region}`;
+                        roompath = `${roompath}`;
                     }, false);
                 }
 
